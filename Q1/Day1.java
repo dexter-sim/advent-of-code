@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Day1 {
 
     public static void main(String[] args) throws IOException {
         part1();
@@ -9,7 +9,7 @@ public class Main {
     }
 
     public static void part1() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("q1-inputs.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("day1-inputs.txt"));
         String line = br.readLine();
         int prev = Integer.parseInt(line);
         int count = 0;
@@ -26,7 +26,7 @@ public class Main {
 
     public static void part2() throws IOException {
         ArrayList<Integer> list = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader("q1-inputs.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("day1-inputs.txt"));
         String s = reader.readLine();
         while (s != null){
             list.add(Integer.parseInt((s)));
