@@ -9,7 +9,7 @@ public class Day1 {
     }
 
     public static void part1() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("day1-inputs.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("day1-input.txt"));
         String line = br.readLine();
         int prev = Integer.parseInt(line);
         int count = 0;
@@ -26,7 +26,7 @@ public class Day1 {
 
     public static void part2() throws IOException {
         ArrayList<Integer> list = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader("day1-inputs.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("day1-input.txt"));
         String s = reader.readLine();
         while (s != null){
             list.add(Integer.parseInt((s)));
