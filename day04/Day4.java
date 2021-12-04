@@ -12,54 +12,46 @@ public class Day4 {
         Scanner scanner = new Scanner(new File("day4-input.txt"));
         String[] draws = scanner.nextLine().split(",");
         ArrayList<int[][]> bingoList = new ArrayList<>();
-        ArrayList<boolean[][]> boolList = new ArrayList<>();
         while (scanner.hasNext()){
             scanner.nextLine();
             int[][] bingo = new int[5][5];
-            boolean[][] boolBingo = new boolean[5][5];
             for (int i = 0; i < 5; i++){
                 for (int j = 0; j < 5; j++){
                     bingo[i][j] = scanner.nextInt();
-                    boolBingo[i][j] = false;
                 }
             }
             bingoList.add(bingo);
-            boolList.add(boolBingo);
         }
 
         int drawNumber = 0;
         int pos = 0;
-        for (int i = 0; i < draws.length; i++){
-            int curr = Integer.parseInt(draws[i]);
+        for (String draw : draws) {
+            drawNumber = Integer.parseInt(draw);
             boolean won = false;
-            for (int a = 0; a < bingoList.size(); a++){
+            for (int a = 0; a < bingoList.size(); a++) {
                 int[][] temp = bingoList.get(a);
-                boolean[][] boolTemp = boolList.get(a);
-                for (int b = 0; b < 5; b++){
-                    for (int c = 0; c < 5; c++){
-                        if (curr == temp[b][c]){
-                            boolTemp[b][c] = true;
+                for (int b = 0; b < 5; b++) {
+                    for (int c = 0; c < 5; c++) {
+                        if (drawNumber == temp[b][c]) {
+                            temp[b][c] = -1;
                         }
                     }
                 }
-                boolList.set(a, boolTemp);
-                if (checker(boolTemp)){
+                if (checker(temp)) {
                     won = true;
                     pos = a;
-                    drawNumber = curr;
                     break;
                 }
             }
-            if (won){
+            if (won) {
                 break;
             }
         }
         int sum = 0;
         int[][] winner = bingoList.get(pos);
-        boolean[][] boolWin = boolList.get(pos);
         for (int i = 0; i < 5; i++){
             for (int j = 0; j < 5; j++){
-                if (!boolWin[i][j]){
+                if (winner[i][j] != -1){
                     sum += winner[i][j];
                 }
             }
@@ -72,38 +64,31 @@ public class Day4 {
         Scanner scanner = new Scanner(new File("day4-input.txt"));
         String[] draws = scanner.nextLine().split(",");
         ArrayList<int[][]> bingoList = new ArrayList<>();
-        ArrayList<boolean[][]> boolList = new ArrayList<>();
         while (scanner.hasNext()){
             scanner.nextLine();
             int[][] bingo = new int[5][5];
-            boolean[][] boolBingo = new boolean[5][5];
             for (int i = 0; i < 5; i++){
                 for (int j = 0; j < 5; j++){
                     bingo[i][j] = scanner.nextInt();
-                    boolBingo[i][j] = false;
                 }
             }
             bingoList.add(bingo);
-            boolList.add(boolBingo);
         }
 
         int index = 0;
         int drawNumber = 0;
         for (int i = 0; i < draws.length; i++){
-            int curr = Integer.parseInt(draws[i]);
+            drawNumber = Integer.parseInt(draws[i]);
             for (int a = 0; a < bingoList.size(); a++){
                 int[][] temp = bingoList.get(a);
-                boolean[][] boolTemp = boolList.get(a);
                 for (int b = 0; b < 5; b++){
                     for (int c = 0; c < 5; c++){
-                        if (curr == temp[b][c]){
-                            boolTemp[b][c] = true;
+                        if (drawNumber == temp[b][c]){
+                            temp[b][c] = -1;
                         }
                     }
                 }
-                boolList.set(a, boolTemp);
-                if (checker(boolTemp)){
-                    boolList.remove(a);
+                if (checker(temp)){
                     bingoList.remove(a);
                     a--;
                 }
@@ -115,25 +100,23 @@ public class Day4 {
         }
 
         int[][] winner = bingoList.get(0);
-        boolean[][] boolWinner = boolList.get(0);
         for (int i = index + 1; i < draws.length; i++){
-            int curr = Integer.parseInt(draws[i]);
+            drawNumber = Integer.parseInt(draws[i]);
             for (int b = 0; b < 5; b++){
                 for (int c = 0; c < 5; c++){
-                    if (curr == winner[b][c]){
-                        boolWinner[b][c] = true;
+                    if (drawNumber == winner[b][c]){
+                        winner[b][c] = -1;
                     }
                 }
             }
-            if (checker(boolWinner)){
-                drawNumber = curr;
+            if (checker(winner)){
                 break;
             }
         }
         int sum = 0;
         for (int i = 0; i < 5; i++){
             for (int j = 0; j < 5; j++){
-                if (!boolWinner[i][j]){
+                if (winner[i][j] != -1){
                     sum += winner[i][j];
                 }
             }
@@ -142,11 +125,11 @@ public class Day4 {
         scanner.close();
     }
 
-    public static boolean checker(boolean[][] arr){
+    public static boolean checker(int[][] arr){
         for (int i = 0; i < 5; i++){
-            if (arr[i][0] && arr[i][1] && arr[i][2] && arr[i][3] && arr[i][4]){
+            if (arr[i][0] == -1 && arr[i][1] == -1 && arr[i][2] == -1 && arr[i][3] == -1 && arr[i][4] == -1){
                 return true;
-            } else if (arr[0][i] && arr[1][i] && arr[2][i] && arr[3][i] && arr[4][i]){
+            } else if (arr[0][i] == -1 && arr[1][i] == -1 && arr[2][i] == -1 && arr[3][i] == -1 && arr[4][i] == -1){
                 return true;
             }
         }
