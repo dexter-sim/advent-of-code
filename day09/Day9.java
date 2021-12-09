@@ -25,11 +25,8 @@ public class Day9 {
             for (int j = 0; j < heightmap.get(i).size(); j++){
                 if (checkLowPoint(heightmap, i, j)){
                     risk += heightmap.get(i).get(j) + 1;
-                    int curr = traverse(heightmap, boolmap,i, j);
-                    if (curr > arr[0]){
-                        arr[0] = curr;
-                        Arrays.sort(arr);
-                    }
+                    arr[0] = Math.max(arr[0], traverse(heightmap, boolmap, i, j));
+                    Arrays.sort(arr);
                 }
             }
         }
@@ -80,5 +77,4 @@ public class Day9 {
             }
         }
     }
-
 }
