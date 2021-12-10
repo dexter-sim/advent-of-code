@@ -53,7 +53,7 @@ public class Day8 {
             boolean flag = true;
             String s = "";
 
-            // To identify 6 using 1 as only 6 from {0, 6, 9} contains 1.
+            // To identify 6 using 1 as only 6 from {0, 6, 9} does not contain 1.
             for (int i = 0; i < sixes.size(); i++){
                 s = sixes.get(i);
                 flag = true;
