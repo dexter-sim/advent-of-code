@@ -8,28 +8,18 @@ public class Day12 {
         Map<String, List<String>> map = new HashMap<>();
         while (scanner.hasNext()) {
             String[] curr = scanner.nextLine().split("-");
-            if (map.containsKey(curr[0])) {
-                List<String> temp = map.get(curr[0]);
-                temp.add(curr[1]);
-                map.replace(curr[0], temp);
-            } else {
-                List<String> temp = new ArrayList<>();
-                temp.add(curr[1]);
-                map.put(curr[0], temp);
+            if (!map.containsKey(curr[0])) {
+                map.put(curr[0], new ArrayList<String>());
             }
+            map.get(curr[0]).add(curr[1]);
 
-            if (map.containsKey(curr[1])) {
-                List<String> temp = map.get(curr[1]);
-                temp.add(curr[0]);
-                map.replace(curr[1], temp);
-            } else {
-                List<String> temp = new ArrayList<>();
-                temp.add(curr[0]);
-                map.put(curr[1], temp);
+            if (!map.containsKey(curr[1])) {
+                map.put(curr[1], new ArrayList<String>());
             }
+            map.get(curr[1]).add(curr[0]);
         }
         scanner.close();
-        System.out.println(part1(map, "start", new ArrayList<String>()));                 // Part 1 Answer
+        System.out.println(part1(map, "start", new ArrayList<String>()));           // Part 1 Answer
         System.out.println(part2(map, "start", new ArrayList<String>(), false));    // Part 2 Answer
     }
 
