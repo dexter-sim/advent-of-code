@@ -22,6 +22,7 @@ def create_stack_input():
     lst = [stack1, stack2, stack3, stack4, stack5, stack6, stack7, stack8, stack9]
     return lst
 
+
 def day5_part1():
     file = open("day5-input.txt", "r")
     lst = create_stack_input()
