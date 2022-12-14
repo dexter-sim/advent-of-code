@@ -1,33 +1,29 @@
 def day14_part1():
     file = open("day14-input.txt", "r")
     grid = [["." for _ in range(1000)] for _ in range(1000)]
-    rock_paths = []
     for line in file:
         coordinates = line.split("->")
         points = []
         for i in range(0, len(coordinates)):
-            x = int(coordinates[i].split(",")[0])
-            y = int(coordinates[i].split(",")[1])
-            points.append([x, y])
-        rock_paths.append(points)
+            [x, y] = coordinates[i].split(",")
+            points.append([int(x), int(y)])
 
-    for path in rock_paths:
-        x = path[0][0]
-        y = path[0][1]
-        for i in range(1, len(path)):
-            while x > path[i][0]:
+        x = points[0][0]
+        y = points[0][1]
+        for i in range(1, len(points)):
+            while x > points[i][0]:
                 grid[y][x] = "#"
                 x -= 1
 
-            while x < path[i][0]:
+            while x < points[i][0]:
                 grid[y][x] = "#"
                 x += 1
 
-            while y > path[i][1]:
+            while y > points[i][1]:
                 grid[y][x] = "#"
                 y -= 1
 
-            while y < path[i][1]:
+            while y < points[i][1]:
                 grid[y][x] = "#"
                 y += 1
             grid[y][x] = "#"
@@ -60,39 +56,34 @@ def day14_part1():
 def day14_part2():
     file = open("day14-input.txt", "r")
     grid = [["." for _ in range(1000)] for _ in range(1000)]
-    rock_paths = []
+    highest_y_coordinate = 0
     for line in file:
         coordinates = line.split("->")
         points = []
         for i in range(0, len(coordinates)):
-            x = int(coordinates[i].split(",")[0])
-            y = int(coordinates[i].split(",")[1])
-            points.append([x, y])
-        rock_paths.append(points)
+            [x, y] = coordinates[i].split(",")
+            points.append([int(x), int(y)])
+            highest_y_coordinate = max(highest_y_coordinate, points[-1][1])
 
-    highest_y_coordinate = 0
-    for path in rock_paths:
-        x = path[0][0]
-        y = path[0][1]
-        highest_y_coordinate = max(highest_y_coordinate, y)
-        for i in range(1, len(path)):
-            while x > path[i][0]:
+        x = points[0][0]
+        y = points[0][1]
+        for i in range(1, len(points)):
+            while x > points[i][0]:
                 grid[y][x] = "#"
                 x -= 1
 
-            while x < path[i][0]:
+            while x < points[i][0]:
                 grid[y][x] = "#"
                 x += 1
 
-            while y > path[i][1]:
+            while y > points[i][1]:
                 grid[y][x] = "#"
                 y -= 1
 
-            while y < path[i][1]:
+            while y < points[i][1]:
                 grid[y][x] = "#"
                 y += 1
             grid[y][x] = "#"
-            highest_y_coordinate = max(highest_y_coordinate, y)
 
     for i in range(len(grid[highest_y_coordinate + 2])):
         grid[highest_y_coordinate + 2][i] = "#"
