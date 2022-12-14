@@ -1,4 +1,5 @@
 import functools
+import json
 
 RIGHT_ORDER = -1
 WRONG_ORDER = 1
@@ -11,7 +12,7 @@ def day13_part1():
     for line in file:
         if len(line.rstrip()) == 0:
             continue
-        packets.append(eval(line.rstrip()))
+        packets.append(json.loads(line.rstrip()))
 
     sum_of_indices = 0
     for i in range(0, len(packets), 2):
@@ -30,7 +31,7 @@ def day13_part2():
     for line in file:
         if len(line.rstrip()) == 0:
             continue
-        packets.append(eval(line.rstrip()))
+        packets.append(json.loads(line.rstrip()))
 
     packets.sort(key=functools.cmp_to_key(lambda x, y: helper(x, y)))
     print((packets.index([[2]]) + 1) * (packets.index([[6]]) + 1))
