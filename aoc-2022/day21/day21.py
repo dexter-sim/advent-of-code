@@ -14,7 +14,7 @@ def day21_part1():
             operations_map[monkey] = operation
 
     while len(operations_map) > 0:
-        to_be_deleted = []
+        monkeys_to_be_deleted = []
         for monkey, operation in operations_map.items():
             left = operation[0:4]
             right = operation[-4:]
@@ -31,12 +31,12 @@ def day21_part1():
                 result_map[monkey] = left_value * right_value
             elif operation.count("/"):
                 result_map[monkey] = int(left_value / right_value)
-            to_be_deleted.append(monkey)
+            monkeys_to_be_deleted.append(monkey)
 
-        for monkey in to_be_deleted:
+        for monkey in monkeys_to_be_deleted:
             operations_map.pop(monkey)
 
-    print(result_map["root"])
+    print(result_map.get("root"))
     file.close()
 
 
@@ -64,7 +64,7 @@ def day21_part2():
         value = int((minimum + maximum) / 2)
         copy_result_map[me] = value
         while len(copy_operations_map) > 0:
-            to_be_deleted = []
+            monkeys_to_be_deleted = []
             for monkey, operation in copy_operations_map.items():
                 left = operation[0:4]
                 right = operation[-4:]
@@ -91,13 +91,13 @@ def day21_part2():
                 elif operation.count("/"):
                     copy_result_map[monkey] = left_value / right_value
 
-                to_be_deleted.append(monkey)
+                monkeys_to_be_deleted.append(monkey)
 
             if equality_check:
                 print(value)
                 break
 
-            for monkey in to_be_deleted:
+            for monkey in monkeys_to_be_deleted:
                 copy_operations_map.pop(monkey)
 
     file.close()
