@@ -25,11 +25,11 @@ def day21_part1():
             right_value = result_map.get(right)
             if operation.__contains__("+"):
                 result_map[monkey] = left_value + right_value
-            elif operation.count("-"):
+            elif operation.__contains__("-"):
                 result_map[monkey] = left_value - right_value
-            elif operation.count("*"):
+            elif operation.__contains__("*"):
                 result_map[monkey] = left_value * right_value
-            elif operation.count("/"):
+            elif operation.__contains__("/"):
                 result_map[monkey] = int(left_value / right_value)
             monkeys_to_be_deleted.append(monkey)
 
@@ -84,11 +84,11 @@ def day21_part2():
                         maximum = value - 1
                 elif operation.__contains__("+"):
                     copy_result_map[monkey] = left_value + right_value
-                elif operation.count("-"):
+                elif operation.__contains__("-"):
                     copy_result_map[monkey] = left_value - right_value
-                elif operation.count("*"):
+                elif operation.__contains__("*"):
                     copy_result_map[monkey] = left_value * right_value
-                elif operation.count("/"):
+                elif operation.__contains__("/"):
                     copy_result_map[monkey] = left_value / right_value
 
                 monkeys_to_be_deleted.append(monkey)
