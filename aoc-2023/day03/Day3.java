@@ -72,10 +72,10 @@ public class Day3 {
 					for (int k = Math.max(0, i - 1); k < Math.min(grid.size(), i + 2); k++) {
 						for (int l = Math.max(0, j - 1); l < Math.min(grid.get(k).size(), j + 2); l++) {
 							char adjacent = grid.get(k).get(l);
-				            if (adjacent == '*') {
-			            		coordinates = k + "," + l;
-		                    	break;
-                            }
+				            		if (adjacent == '*') {
+			            				coordinates = k + "," + l;
+		                    				break;
+                            				}
 						}
 					}
 				}
