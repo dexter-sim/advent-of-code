@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Day1 {
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File("./aoc-2024/day1/day1-input.txt"));
+        Scanner scanner = new Scanner(new File("./aoc-2024/day01/day1-input.txt"));
         List<String> inputList = new ArrayList<>();
         while (scanner.hasNext()) {
             inputList.add(scanner.nextLine());
