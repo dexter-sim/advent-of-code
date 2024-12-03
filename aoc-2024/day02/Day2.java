@@ -43,9 +43,9 @@ public class Day2 {
             }
 
             for (int i = 0; i < report.size(); i++) {
-                List<Integer> newList = new ArrayList<>(report);
-                newList.remove(i);
-                if (checkSafe(newList)) {
+                List<Integer> newReport = new ArrayList<>(report);
+                newReport.remove(i);
+                if (checkSafe(newReport)) {
                     count++;
                     break;
                 }
